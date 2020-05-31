@@ -15,8 +15,10 @@
                AND color = #{color}
             </if>
             <if test="price != 'Price'">
-               AND price = #{price}
+               AND price BETWEEN #{price} AND #{maxPrice}
             </if>
+            
       </where>
+      ORDER BY modeling
 	</select>
 </mapper>

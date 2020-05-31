@@ -25,8 +25,6 @@ public class ListController {
 													   httpServletRequest.getParameter("color"),
 													   httpServletRequest.getParameter("price"));
 		
-		System.out.println(listCheck.get(0).getName());
-		
 		return listCheck;
 	}
 

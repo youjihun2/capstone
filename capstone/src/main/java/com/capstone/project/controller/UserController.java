@@ -84,7 +84,7 @@ public class UserController {
 
 		if(userIdCheck != null) { result = 2; }
 	
-		if(result < 2) {
+		else {
 			member.setId(httpServletRequest.getParameter("Id"));
 			member.setPw(httpServletRequest.getParameter("Pw"));
 			member.setEmail(httpServletRequest.getParameter("Email"));
@@ -117,12 +117,21 @@ public class UserController {
 		return save;
 	}
 
-
+	@RequestMapping(value="user/manual",method = RequestMethod.GET)
+	public ModelAndView manual() {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
 
 	@RequestMapping(value="/jquery/load.do",method = RequestMethod.POST)
 	public @ResponseBody String load(Members member,HttpSession session, HttpServletRequest httpServletRequest) {
-
-		Members save  = userService.getFurn(httpServletRequest.getParameter("ID"));
-		return save.getRoom();
+	      String ret ="";
+	      try {
+	         Members save  = userService.getFurn(httpServletRequest.getParameter("ID"));
+	         ret = save.getRoom();
+	      }catch (Exception e) {
+	         ret = "no";
+	      }
+	      return ret;
 	}
 }
